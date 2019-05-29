@@ -9,6 +9,7 @@ class Student(models.Model):
 	department = models.CharField(max_length=100)
 	phone = models.CharField(max_length=10,blank=True)
 	email = models.CharField(max_length=100,blank=True)
+	year = models.CharField(max_length=100,blank=True)
 	fcmtoken = models.CharField(max_length=500, blank=True)
 	lastnotiftime = models.DateTimeField(auto_now=True)
 	def __str__(self):

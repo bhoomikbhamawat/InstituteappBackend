@@ -21,6 +21,7 @@ def checkregister(request):
             response["roll"]=student.roll
             response["phone"]=student.phone
             response["department"]=student.department
+            response["year"] = student.year
             response["status"]=1 #registered
 
         except:
@@ -42,7 +43,7 @@ def login(request):
             student.phone = post["phone"]
             student.department = post["department"]
             student.fcmtoken = post["fcmtoken"]
-
+            student.year = post["year"]
             response["status"] = 2
         except:
             bugUsername = User.objects.latest('id').id
@@ -53,6 +54,7 @@ def login(request):
             student.phone = post["phone"]
             student.department = post["department"]
             student.fcmtoken = post["fcmtoken"]
+            student.year = post["year"]
             user.first_name = post["name"]
             password = "password1234"
             user.set_password(password)
