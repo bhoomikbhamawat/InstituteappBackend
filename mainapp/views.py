@@ -1,55 +1,62 @@
 from django.shortcuts import render
 from django.contrib.auth.models import User
 from django.http import Http404
+from .models import *
+from django.views.decorators.csrf import csrf_exempt
+from django.http import JsonResponse
+import json
 
-from mainapp.serializers import UserSerializer
-from rest_framework.views import APIView
-from rest_framework.response import Response
-from rest_framework import status
+@csrf_exempt
+def checkregister(request):
 
-class UserList(APIView):
-    def get(self, request, format=None):
-         users = User.objects.all()
-         serializer = UserSerializer(users, many=True)
-         return Response(serializer.data)
+    response = {}
+    response["status"]=0
+    
+    if request.method == 'POST':
+        post = json.loads(request.body)#request.POST
+        email = post["email"]
+        try:
+            student = Student.objects.get(email__iexact = email)
+            response["name"]=student.name
+            response["roll"]=student.roll
+            response["phone"]=student.phone
+            response["department"]=student.department
+            response["status"]=1 #registered
 
-    def post(self, request, format=None):
-         serializer = UserSerializer(data=request.DATA)
-         if serializer.is_valid():
-             serializer.save()
-             return Response(serializer.data, status=status.HTTP_201_CREATED)
-         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        except:
+            response["status"] = 2 #not registered
+    return JsonResponse(response) 
 
-    def delete(self, request, pk, format=None):
-         user = self.get_object(pk)
-         user.delete()
-         return Response(status=status.HTTP_204_NO_CONTENT)
 
-class UserDetail(APIView):
-    """
-     Retrieve, update or delete a user instance.
-    """
-    def get_object(self, pk):
-         try:
-             return User.objects.get(pk=pk)
-         except User.DoesNotExist:
-             raise Http404
+@csrf_exempt
+def login(request):
+    response = {}
+    response["status"]=0
+    if request.method == 'POST':
+        post = json.loads(request.body)#request.POST
+        email = post["email"]
+        try:
+            student = Student.objects.get(email__iexact = email)
+            student.roll = post["roll"]
+            student.name = post["name"]
+            student.phone = post["phone"]
+            student.department = post["department"]
+            student.fcmtoken = post["fcmtoken"]
 
-    def get(self, request, pk, format=None):
-         user = self.get_object(pk)
-         user = UserSerializer(user)
-         return Response(user.data)
-
-    def put(self, request, pk, format=None):
-         user = self.get_object(pk)
-         serializer = UserSerializer(user, data=request.DATA)
-         if serializer.is_valid():
-             serializer.save()
-             return Response(serializer.data)
-         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
-    def delete(self, request, pk, format=None):
-         user = self.get_object(pk)
-         user.delete()
-         return Response(status=status.HTTP_204_NO_CONTENT)
-
+            response["status"] = 2
+        except:
+            bugUsername = User.objects.latest('id').id
+            user = User.objects.create_user(username=str(bugUsername+1))
+            student = Student(user = user,email = email)
+            student.roll = post["roll"]
+            student.name = post["name"]
+            student.phone = post["phone"]
+            student.department = post["department"]
+            student.fcmtoken = post["fcmtoken"]
+            user.first_name = post["name"]
+            password = "password1234"
+            user.set_password(password)
+            user.save()
+            student.save()
+            response["status"] = 1
+    return JsonResponse(response) 
