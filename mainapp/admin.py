@@ -23,9 +23,11 @@ class UserAdmin(BaseUserAdmin):
 # 	inlines = (ImageInline,)
 
 # Register your models here.
-admin.site.unregister(User)
-admin.site.register(User, UserAdmin,)
 admin.site.register(Complain)
 admin.site.register(CouncilandCell)
 admin.site.register(Club)
 admin.site.register(Notification)
+
+admin.site.unregister(User)
+admin.site.register(User, UserAdmin,)
+
