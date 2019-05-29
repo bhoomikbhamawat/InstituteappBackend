@@ -15,7 +15,7 @@
 ``` {"status": 0}```
 
 - Response if registered
-``` {"status": 1, "name":"testname" , "roll":12313123, "phone": "1232423535", "department":"Mining" }```
+``` {"status": 1, "name":"testname" , "roll":12313123, "phone": "1232423535", "department":"Mining", "year":"2019" }```
 
 - Response if new reg
 ``` {"status": 2}```
@@ -25,7 +25,7 @@
 
 #### Expected POST req
 
-``` {"email":"asdjabda@akf.com", "name":"testname" , "roll":12313123, "phone": "1232423535", "department":"Mining", "fcmtoken":"2131232dasasdasdasdwasd" }```
+``` {"email":"asdjabda@akf.com", "name":"testname" , "roll":12313123, "phone": "1232423535", "department":"Mining", "year":"2019", "fcmtoken":"2131232dasasdasdasdwasd" }```
 
 #### Expected POST res
 
