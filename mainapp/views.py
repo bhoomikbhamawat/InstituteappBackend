@@ -62,3 +62,51 @@ def login(request):
             student.save()
             response["status"] = 1
     return JsonResponse(response) 
+
+
+@csrf_exempt
+def feed(request):
+    response = {}
+    response["status"]=0
+    if request.method == 'POST':
+        post = json.loads(request.body)#request.POST
+        roll = post["roll"]
+        student = Student.objects.get(roll=roll)
+        notifs=Notification.objects.all()
+        # print(notifs.viewedby_set.all())
+        if student:
+            for notif in notifs:
+                # try:
+                    if not (student in notif.viewedby.all()):
+                        notif.viewedby.add(student)
+                        notif.save()
+                        print("2132133333333333333333333333333333333333333333333333")
+                # except:
+                #         notif.viewedby.add(student)
+                #         notif.save()
+            outnotif=[]
+
+            for notif in notifs:
+                curr={}
+                curr["club"]=notif.clubname.name
+                curr["council"]=notif.clubname.councilname.name
+                curr["title"]=notif.notification_header
+                curr["description"]=notif.notification
+                if notif.notification_pic:
+                    curr["image"]=notif.notification_pic.url
+                curr["datetime"]=notif.datetime
+                curr["location"]=notif.location
+                curr["viewedcount"]=notif.viewedby.count()
+
+                outnotif.append(curr)
+
+            response["status"]=1
+            response["notif"]=outnotif
+            return JsonResponse(response)
+
+        else:
+            return JsonResponse(response) 
+
+    return JsonResponse(response)
+
+      

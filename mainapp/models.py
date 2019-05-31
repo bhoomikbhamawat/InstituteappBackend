@@ -11,7 +11,7 @@ class Student(models.Model):
 	email = models.CharField(max_length=100,blank=True)
 	year = models.CharField(max_length=100,blank=True)
 	fcmtoken = models.CharField(max_length=500, blank=True)
-	lastnotiftime = models.DateTimeField(auto_now=True)
+	reg_time = models.DateTimeField(auto_now=True)
 	def __str__(self):
 		return self.name 
 
@@ -29,21 +29,26 @@ class CouncilandCell(models.Model):
 		return self.name
 
 class Club(models.Model):
-	councilname = models.OneToOneField(CouncilandCell, on_delete = models.CASCADE)
+	councilname = models.ForeignKey(CouncilandCell, on_delete = models.CASCADE)
 	name = models.CharField(max_length=100, blank=True)
 	def __str__(self):
 		return self.name
 
 class Notification(models.Model):
-	councilname = models.ForeignKey(CouncilandCell, on_delete = models.CASCADE)
-	clubname = models.ForeignKey(Club, null=True, on_delete = models.CASCADE)
-	notification = models.CharField(max_length= 1000)
-	notification_header = models.CharField(max_length = 100)
-	notification_pic = models.ImageField()
+	# coun/cilname = models.ForeignKey(CouncilandCell, on_delete = models.CASCADE)
+	clubname = models.ForeignKey(Club, on_delete = models.CASCADE,verbose_name='Club/Cell Name',blank=False,null =True)
+
+	# clubname = ChainedForeignKey(Club, chained_field="councilname",chained_model_field="councilname",
+ #        auto_choose=True,
+ #        show_all=False,
+ #        sort=True, null=True,blank=True)
+	notification = models.CharField(max_length= 1000, verbose_name='Title')
+	notification_header = models.CharField(max_length = 100,verbose_name='Description')
+	notification_pic = models.ImageField(null=True,blank=True,verbose_name='Image')
 	datetime = models.DateTimeField()
 	location = models.CharField(max_length = 300)
-	view_count = models.IntegerField()
-	interested_count = models.IntegerField()
+	viewedby = models.ManyToManyField(Student,editable=False)
+	# interested_count = models.ManyToManyField(Student,editable=False)
 
 	def __str__(self):
 		return self.notification_header
