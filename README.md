@@ -46,6 +46,8 @@
 
 ``` {"roll":15075002}```
 
+#### Expected POST res
+
 - Response if anything goes wrong
 ``` {"status": 0}```
 
