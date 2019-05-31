@@ -21,6 +21,5 @@ admin.autodiscover()
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('mainapp.urls')),
-    url(r'^chaining/', include('smart_selects.urls')),
 
 ]
