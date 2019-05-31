@@ -39,3 +39,39 @@
 ``` {"status": 1}```
 
 
+### Feed stories
+
+
+#### Expected POST req
+
+``` {"roll":15075002}```
+
+- Response if anything goes wrong
+``` {"status": 0}```
+
+- Response if everything is fine
+
+```{
+    "status": 1,
+    "notif": [
+        {
+            "club": "Indian Music Club",
+            "council": "Cultural Council",
+            "title": "asd",
+            "description": "ad",
+            "datetime": "2019-05-31T10:53:10Z",
+            "location": "ds",
+            "viewedcount": 1
+        },
+        {
+            "club": "Western Music Club",
+            "council": "Cultural Council",
+            "title": "test1",
+            "description": "test",
+            "image": "/media/back.jpg",
+            "datetime": "2019-05-31T17:55:29Z",
+            "location": "testloc",
+            "viewedcount": 1
+        }
+    ]
+}```
