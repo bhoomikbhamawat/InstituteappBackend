@@ -40,7 +40,7 @@
 
 
 ### Feed stories
-
+```http://iitbhuapp.tk/feed```
 
 #### Expected POST req
 
