@@ -100,8 +100,7 @@ ___________
 ``` {"status": 0}```
 
 - Response if everything is fine
-
-```{"status": 1}```
+``` {"status": 1}```
 
 ___________________
 
