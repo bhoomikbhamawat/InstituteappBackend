@@ -101,8 +101,7 @@ ___________
 
 - Response if everything is fine
 
-```{"status": 1}
-```
+```{"status": 1}```
 
 ___________________
 
