@@ -80,7 +80,7 @@ def feed(request):
                     if not (student in notif.viewedby.all()):
                         notif.viewedby.add(student)
                         notif.save()
-                        print("2132133333333333333333333333333333333333333333333333")
+                        # print("2132133333333333333333333333333333333333333333333333")
                 # except:
                 #         notif.viewedby.add(student)
                 #         notif.save()
@@ -109,4 +109,29 @@ def feed(request):
 
     return JsonResponse(response)
 
-      
+
+@csrf_exempt
+def postcomplain(request):
+    response = {}
+    response["status"]=0
+    if request.method == 'POST':
+        post = json.loads(request.body)#request.POST
+        roll = post["roll"]
+        student = Student.objects.get(roll=roll)
+        if student:
+            complaindesc=post["complain"]
+            if post["anonymous"]:
+                complain = Complain(complain=post["complain"])
+                complain.save()
+            else:
+                complain = Complain(complain=post["complain"],complainby=student)
+                complain.save()
+                
+
+            response["status"]=1
+            return JsonResponse(response)
+
+        else:
+            return JsonResponse(response) 
+
+    return JsonResponse(response)

@@ -17,11 +17,12 @@ class Student(models.Model):
 
 
 class Complain(models.Model):
-	complainby = models.ForeignKey(User, on_delete=models.CASCADE)
+	complainby = models.ForeignKey(Student, on_delete=models.CASCADE,null=True,editable=False)
 	complain = models.TextField()
-
 	def __str__(self):
-		return self.complain
+		if self.complainby:
+			return "complain by " + self.complainby.name 
+		return "complain by anonymous"
 
 class CouncilandCell(models.Model):
 	name = models.CharField(max_length=100, blank=True)

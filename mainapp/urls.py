@@ -12,5 +12,7 @@ urlpatterns = [
     url(r'^login$', views.login, ),   
     url(r'^checkreg$', views.checkregister, ),   
     url(r'^feed$', views.feed, ),
+    url(r'^postcomplain$', views.postcomplain, ),
+
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
