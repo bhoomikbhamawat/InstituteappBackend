@@ -49,7 +49,7 @@ def login(request):
             bugUsername = User.objects.latest('id').id
             user = User.objects.create_user(username=str(bugUsername+1))
             student = Student(user = user,email = email)
-            student.roll = post["roll"]
+            student.roll = int(post["roll"])
             student.name = post["name"]
             student.phone = post["phone"]
             student.department = post["department"]
@@ -70,7 +70,7 @@ def feed(request):
     response["status"]=0
     if request.method == 'POST':
         post = json.loads(request.body)#request.POST
-        roll = post["roll"]
+        roll = int(post["roll"])
         student = Student.objects.get(roll=roll)
         notifs=Notification.objects.all()
         # print(notifs.viewedby_set.all())
@@ -116,7 +116,7 @@ def postcomplain(request):
     response["status"]=0
     if request.method == 'POST':
         post = json.loads(request.body)#request.POST
-        roll = post["roll"]
+        roll = int(post["roll"])
         student = Student.objects.get(roll=roll)
         if student:
             complaindesc=post["complain"]
