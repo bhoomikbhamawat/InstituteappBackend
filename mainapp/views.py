@@ -6,6 +6,11 @@ from django.views.decorators.csrf import csrf_exempt
 from django.http import JsonResponse
 import json
 
+def randomString(stringLength=10):
+    """Generate a random string of fixed length """
+    letters = string.ascii_lowercase
+    return ''.join(random.choice(letters) for i in range(stringLength))
+
 @csrf_exempt
 def checkregister(request):
 
@@ -56,7 +61,7 @@ def login(request):
             student.fcmtoken = post["fcmtoken"]
             student.year = post["year"]
             user.first_name = post["name"]
-            password = "password1234"
+            password = randomString()
             user.set_password(password)
             user.save()
             student.save()
@@ -89,7 +94,11 @@ def feed(request):
             for notif in notifs:
                 curr={}
                 curr["club"]=notif.clubname.name
+                if notif.clubname.clubimage:
+                    curr["clubimage"]=notif.clubname.clubimage.url
                 curr["council"]=notif.clubname.councilname.name
+                if notif.clubname.councilname.image:
+                    curr["councilimage"]=notif.clubname.councilname.image.url
                 curr["title"]=notif.notification_header
                 curr["description"]=notif.notification
                 if notif.notification_pic:
