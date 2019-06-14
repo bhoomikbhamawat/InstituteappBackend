@@ -106,7 +106,9 @@ def feed(request):
                 curr["datetime"]=notif.datetime
                 curr["location"]=notif.location
                 curr["viewedcount"]=notif.viewedby.count()
+                curr["interestedcount"]=notif.interested.count()
 
+                curr["notifid"]=notif.id
                 outnotif.append(curr)
 
             response["status"]=1
@@ -142,5 +144,29 @@ def postcomplain(request):
 
         else:
             return JsonResponse(response) 
+
+    return JsonResponse(response)
+
+@csrf_exempt
+def interested(request):
+    response = {}
+    response["status"]=0
+    if request.method == 'POST':
+        post = json.loads(request.body)#request.POST
+        roll = int(post["roll"])
+        student = Student.objects.get(roll=roll)
+        print(student)
+        if student:
+            notif = Notification.objects.get(id=int(post["notifid"]))
+            if notif:
+                if not (student in notif.interested.all()):
+                    notif.interested.add(student)
+                    notif.save()
+                    response["status"]=1
+                else:
+                    response["status"]=2
+                                
+                return JsonResponse(response)
+
 
     return JsonResponse(response)

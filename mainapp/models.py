@@ -50,8 +50,8 @@ class Notification(models.Model):
 	notification_pic = models.ImageField(null=True,blank=True,verbose_name='Image')
 	datetime = models.DateTimeField()
 	location = models.CharField(max_length = 300)
-	viewedby = models.ManyToManyField(Student,editable=False)
-	# interested_count = models.ManyToManyField(Student,editable=False)
+	viewedby = models.ManyToManyField(Student,editable=False,related_name='viewedby')
+	interested = models.ManyToManyField(Student,editable=False,related_name='interested')
 
 	def __str__(self):
 		return self.notification_header
