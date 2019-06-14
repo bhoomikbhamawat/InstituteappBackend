@@ -89,7 +89,7 @@ _________
 }
 ```
 ___________
-### Complain
+### Interested
 ```http://iitbhuapp.tk/interested```
 
 #### Expected POST req
