@@ -107,6 +107,10 @@ def feed(request):
                 curr["location"]=notif.location
                 curr["viewedcount"]=notif.viewedby.count()
                 curr["interestedcount"]=notif.interested.count()
+                if student in notif.interested.all():
+                    curr["interested"]=1
+                else:
+                    curr["interested"]=0
 
                 curr["notifid"]=notif.id
                 outnotif.append(curr)
