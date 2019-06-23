@@ -148,7 +148,7 @@ ___________
 
 - Response if everything is fine
 ``` {
-   "status":0,
+   "status":1,
    "councils":[
       {
          "name":"Cultural Council",
