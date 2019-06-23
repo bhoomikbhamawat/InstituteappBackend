@@ -174,3 +174,33 @@ def interested(request):
 
 
     return JsonResponse(response)
+
+@csrf_exempt
+def clubsandcouncils(request):
+    response = {}
+    response["status"]=0
+    response["councils"]=[]
+    
+    try:
+        clubs = Club.objects.all()
+        for c in clubs:
+            club={}
+            club["name"]=c.name
+            if c.clubimage:
+                club["image"]=c.clubimage.url
+            flag=1
+            for councilds in response["councils"]:
+                if councilds["name"]==c.councilname.name:
+                    councilds["clubs"].append(club)
+                    flag=0
+            if flag:
+                cou={}
+                cou["name"]=c.councilname.name
+                if c.councilname.image:
+                    cou["image"]=c.councilname.image.url
+                cou["clubs"]=[]
+                cou["clubs"].append(club)
+                response["councils"].append(cou)
+    except Exception as e:
+        print(e)
+    return JsonResponse(response)
