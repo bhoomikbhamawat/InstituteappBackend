@@ -61,21 +61,22 @@ _________
     "notif": [
         {
             "club": "Indian Music Club",
-            "clubimage": "/media/download.png",#will appear when club image is added
+            "clubimage": "/media/download.png",
             "council": "Cultural Council",
-            "councilimage": "/media/abc.jpeg",#will appear when council image is added
+            "councilimage": "/media/abc.jpeg",
             "title": "asd",
             "description": "ad",
             "datetime": "2019-05-31T10:53:10Z",
             "location": "ds",
             "viewedcount": 1,
             "interestedcount": 1,
+            "interested": 1,
             "notifid": 1
         },
         {
             "club": "Western Music Club",
             "council": "Cultural Council",
-            "councilimage": "/media/abc.jpeg",#will appear when council image is added
+            "councilimage": "/media/abc.jpeg",
             "title": "test1",
             "description": "test",
             "image": "/media/back.jpg",
@@ -83,6 +84,7 @@ _________
             "location": "testloc",
             "viewedcount": 1,
             "interestedcount": 0,
+            "interested": 0,
             "notifid": 2
         }
     ]
