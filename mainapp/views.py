@@ -201,6 +201,8 @@ def clubsandcouncils(request):
                 cou["clubs"]=[]
                 cou["clubs"].append(club)
                 response["councils"].append(cou)
+        response["status"]=1
+
     except Exception as e:
         print(e)
     return JsonResponse(response)
