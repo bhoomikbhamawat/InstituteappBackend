@@ -135,6 +135,56 @@ ___________
 - Response if everything is fine
 ``` {"status": 1}```
 
+___________
+
+### Club and council
+```http://iitbhuapp.tk/clubsandcouncils```
+
+
+#### Expected POST res
+
+- Response if anything goes wrong
+``` {"status": 0}```
+
+- Response if everything is fine
+``` {
+   "status":0,
+   "councils":[
+      {
+         "name":"Cultural Council",
+         "image":"/media/abc.jpeg",
+         "clubs":[
+            {
+               "name":"Indian Music Club",
+               "image":"/media/download.png"
+            },
+            {
+               "name":"Western Music Club",
+	       "image":"/media/download.png"
+
+            },
+            {
+               "name":"Dance Club",
+	       "image":"/media/download.png"
+
+            }
+         ]
+      },
+      {
+         "name":"Games and Sports Council",
+         "image":"/media/3.jpeg",
+         "clubs":[
+            {
+               "name":"Cricket Club",
+               "image":"/media/posters.jpg"
+            }
+         ]
+      }
+   ]
+}
+```
+
+
 ___________________
 
 ### Contributors
