@@ -66,9 +66,10 @@ def login(request):
             user.save()
             student.save()
             response["status"] = 1
-    return JsonResponse(response) 
+    return JsonResponse(response)
 
 
+# noinspection PyInterpreter
 @csrf_exempt
 def feed(request):
     response = {}
@@ -130,20 +131,34 @@ def postcomplain(request):
     response = {}
     response["status"]=0
     if request.method == 'POST':
+        print(request.body)
         post = json.loads(request.body)#request.POST
         roll = int(post["roll"])
         student = Student.objects.get(roll=roll)
         if student:
-            complaindesc=post["complain"]
+            complainheader=post["header"]
+            complaintype=post["type"]
             if post["anonymous"]:
                 complain = Complain(complain=post["complain"])
+                complain.complainheader = complainheader
+                if post["hostel"]:
+                    complainsubtype=post["hostel"]
+                    complain.complainsubtype=complainsubtype
+                complain.type = complaintype
                 complain.save()
+
             else:
                 complain = Complain(complain=post["complain"],complainby=student)
-                complain.save()
-                
+                complain.complainheader=complainheader
+                if post["hostel"]:
+                    complainsubtype = post["hostel"]
+                    complain.complainsubtype = complainsubtype
+                    complain.type=complaintype
+                    complain.save()
+
 
             response["status"]=1
+            print(response)
             return JsonResponse(response)
 
         else:
@@ -171,7 +186,6 @@ def interested(request):
                     response["status"]=2
                                 
                 return JsonResponse(response)
-
 
     return JsonResponse(response)
 
