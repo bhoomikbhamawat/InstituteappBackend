@@ -141,7 +141,7 @@ def postcomplain(request):
             if post["anonymous"]:
                 complain = Complain(complain=post["complain"])
                 complain.complainheader = complainheader
-                if post["hostel"]:
+                if "hostel" in post:
                     complainsubtype=post["hostel"]
                     complain.complainsubtype=complainsubtype
                 complain.complaintype = complaintype
@@ -150,7 +150,7 @@ def postcomplain(request):
             else:
                 complain = Complain(complain=post["complain"],complainby=student)
                 complain.complainheader=complainheader
-                if post["hostel"]:
+                if "hostel" in post:
                     complainsubtype = post["hostel"]
                     complain.complainsubtype = complainsubtype
                 complain.complaintype=complaintype
