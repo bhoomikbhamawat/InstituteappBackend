@@ -19,8 +19,8 @@ class Student(models.Model):
 class Complain(models.Model):
 	complainby = models.ForeignKey(Student, on_delete=models.CASCADE,null=True,editable=False)
 	complain = models.TextField()
-	complainheader=models.TextField()
-	complaintype=models.TextField()
+	complainheader=models.TextField(null=True)
+	complaintype=models.TextField(null=True)
 	complainsubtype=models.TextField(blank=True, null=True)
 	def __str__(self):
 		if self.complainby:
