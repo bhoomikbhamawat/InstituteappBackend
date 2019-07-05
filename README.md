@@ -123,7 +123,10 @@ ___________
 ``` {
 	"roll":213,
 	"complain":"test complain",
-	"anonymous":1 #0 if you dont want to be anonymous
+	"anonymous":1 #0 if you dont want to be anonymous,
+	"header":"complain header",
+	"type":"hostel complain",
+	"hostel":"sc dey"#optional field
 }
 ```
 
