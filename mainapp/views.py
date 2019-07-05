@@ -144,7 +144,7 @@ def postcomplain(request):
                 if post["hostel"]:
                     complainsubtype=post["hostel"]
                     complain.complainsubtype=complainsubtype
-                complain.type = complaintype
+                complain.complaintype = complaintype
                 complain.save()
 
             else:
@@ -153,8 +153,8 @@ def postcomplain(request):
                 if post["hostel"]:
                     complainsubtype = post["hostel"]
                     complain.complainsubtype = complainsubtype
-                    complain.type=complaintype
-                    complain.save()
+                complain.complaintype=complaintype
+                complain.save()
 
 
             response["status"]=1
