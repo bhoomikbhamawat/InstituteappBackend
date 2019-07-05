@@ -19,6 +19,9 @@ class Student(models.Model):
 class Complain(models.Model):
 	complainby = models.ForeignKey(Student, on_delete=models.CASCADE,null=True,editable=False)
 	complain = models.TextField()
+	complainheader=models.TextField()
+	complaintype=models.TextField()
+	complainsubtype=models.TextField(blank=True, null=True)
 	def __str__(self):
 		if self.complainby:
 			return "complain by " + self.complainby.name 
@@ -55,5 +58,4 @@ class Notification(models.Model):
 
 	def __str__(self):
 		return self.notification_header
-
 
