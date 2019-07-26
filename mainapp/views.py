@@ -71,59 +71,64 @@ def login(request):
 
 # noinspection PyInterpreter
 @csrf_exempt
-def feed(request):
-    response = {}
-    response["status"]=0
-    if request.method == 'POST':
-        post = json.loads(request.body)#request.POST
-        roll = int(post["roll"])
-        student = Student.objects.get(roll=roll)
-        notifs=Notification.objects.all()
-        # print(notifs.viewedby_set.all())
-        if student:
-            for notif in notifs:
-                # try:
-                    if not (student in notif.viewedby.all()):
-                        notif.viewedby.add(student)
-                        notif.save()
-                        # print("2132133333333333333333333333333333333333333333333333")
-                # except:
-                #         notif.viewedby.add(student)
-                #         notif.save()
-            outnotif=[]
+def feedandclubs(request):
+	response = {}
+	response["status"]=0
+	response["councils"] = clubsandcouncils()["councils"]
+	try:
+	    if request.method == 'POST':
+	        post = json.loads(request.body)#request.POST
+	        roll = int(post["roll"])
+	        student = Student.objects.get(roll=roll)
+	        notifs=Notification.objects.all()
+	        # print(notifs.viewedby_set.all())
+	        if student:
+	            for notif in notifs:
+	                # try:
+	                    if not (student in notif.viewedby.all()):
+	                        notif.viewedby.add(student)
+	                        notif.save()
+	                        # print("2132133333333333333333333333333333333333333333333333")
+	                # except:
+	                #         notif.viewedby.add(student)
+	                #         notif.save()
+	            outnotif=[]
 
-            for notif in notifs:
-                curr={}
-                curr["club"]=notif.clubname.name
-                if notif.clubname.clubimage:
-                    curr["clubimage"]=notif.clubname.clubimage.url
-                curr["council"]=notif.clubname.councilname.name
-                if notif.clubname.councilname.image:
-                    curr["councilimage"]=notif.clubname.councilname.image.url
-                curr["title"]=notif.notification_header
-                curr["description"]=notif.notification
-                if notif.notification_pic:
-                    curr["image"]=notif.notification_pic.url
-                curr["datetime"]=notif.datetime
-                curr["location"]=notif.location
-                curr["viewedcount"]=notif.viewedby.count()
-                curr["interestedcount"]=notif.interested.count()
-                if student in notif.interested.all():
-                    curr["interested"]=1
-                else:
-                    curr["interested"]=0
+	            for notif in notifs:
+	                curr={}
+	                curr["club"]=notif.clubname.name
+	                if notif.clubname.clubimage:
+	                    curr["clubimage"]=notif.clubname.clubimage.url
+	                curr["council"]=notif.clubname.councilname.name
+	                if notif.clubname.councilname.image:
+	                    curr["councilimage"]=notif.clubname.councilname.image.url
+	                curr["title"]=notif.notification_header
+	                curr["description"]=notif.notification
+	                if notif.notification_pic:
+	                    curr["image"]=notif.notification_pic.url
+	                curr["datetime"]=notif.datetime
+	                curr["location"]=notif.location
+	                curr["viewedcount"]=notif.viewedby.count()
+	                curr["interestedcount"]=notif.interested.count()
+	                if student in notif.interested.all():
+	                    curr["interested"]=1
+	                else:
+	                    curr["interested"]=0
 
-                curr["notifid"]=notif.id
-                outnotif.append(curr)
+	                curr["notifid"]=notif.id
+	                outnotif.append(curr)
 
-            response["status"]=1
-            response["notif"]=outnotif
-            return JsonResponse(response)
+	            response["status"]=1
+	            response["notif"]=outnotif
+	            print(response)
+	            return JsonResponse(response)
 
-        else:
-            return JsonResponse(response) 
+	        else:
+	            return JsonResponse(response) 
 
-    return JsonResponse(response)
+	except:
+		pass
+	return JsonResponse(response)
 
 
 @csrf_exempt
@@ -189,34 +194,27 @@ def interested(request):
 
     return JsonResponse(response)
 
-@csrf_exempt
-def clubsandcouncils(request):
-    response = {}
-    response["status"]=0
-    response["councils"]=[]
-    
-    try:
-        clubs = Club.objects.all()
-        for c in clubs:
-            club={}
-            club["name"]=c.name
-            if c.clubimage:
-                club["image"]=c.clubimage.url
-            flag=1
-            for councilds in response["councils"]:
-                if councilds["name"]==c.councilname.name:
-                    councilds["clubs"].append(club)
-                    flag=0
-            if flag:
-                cou={}
-                cou["name"]=c.councilname.name
-                if c.councilname.image:
-                    cou["image"]=c.councilname.image.url
-                cou["clubs"]=[]
-                cou["clubs"].append(club)
-                response["councils"].append(cou)
-        response["status"]=1
-
-    except Exception as e:
-        print(e)
-    return JsonResponse(response)
+def clubsandcouncils():
+	response = {}
+	response["councils"]=[]
+	clubs = Club.objects.all()
+	for c in clubs:
+		club={}
+		club["name"]=c.name
+		if c.clubimage:
+		    club["image"]=c.clubimage.url
+		flag=1
+		for councilds in response["councils"]:
+		    if councilds["name"]==c.councilname.name:
+		        councilds["clubs"].append(club)
+		        flag=0
+		if flag:
+		    cou={}
+		    cou["name"]=c.councilname.name
+		    if c.councilname.image:
+		        cou["image"]=c.councilname.image.url
+		    cou["clubs"]=[]
+		    cou["clubs"].append(club)
+		    response["councils"].append(cou)
+	print(response)
+	return response
