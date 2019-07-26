@@ -42,8 +42,8 @@ _______
 
 _________
 
-### Feed stories
-```http://iitbhuapp.tk/feed```
+### Feed stories and clubs
+```http://iitbhuapp.tk/feedandclubs```
 
 #### Expected POST req
 
@@ -52,12 +52,73 @@ _________
 #### Expected POST res
 
 - Response if anything goes wrong
-``` {"status": 0}```
+``` 
+{
+    "status": 0,
+    "councils": [
+        {
+            "name": "Cultural Council",
+            "image": "/media/abc.jpeg",
+            "clubs": [
+                {
+                    "name": "Indian Music Club",
+                    "image": "/media/download.png"
+                },
+                {
+                    "name": "Western Music Club"
+                },
+                {
+                    "name": "Dance Club"
+                }
+            ]
+        },
+        {
+            "name": "Games and Sports Council",
+            "image": "/media/3.jpeg",
+            "clubs": [
+                {
+                    "name": "Cricket Club",
+                    "image": "/media/posters.jpg"
+                }
+            ]
+        }
+    ]
+}
+```
 
 - Response if everything is fine
 
-```{
+```
+{
     "status": 1,
+    "councils": [
+        {
+            "name": "Cultural Council",
+            "image": "/media/abc.jpeg",
+            "clubs": [
+                {
+                    "name": "Indian Music Club",
+                    "image": "/media/download.png"
+                },
+                {
+                    "name": "Western Music Club"
+                },
+                {
+                    "name": "Dance Club"
+                }
+            ]
+        },
+        {
+            "name": "Games and Sports Council",
+            "image": "/media/3.jpeg",
+            "clubs": [
+                {
+                    "name": "Cricket Club",
+                    "image": "/media/posters.jpg"
+                }
+            ]
+        }
+    ],
     "notif": [
         {
             "club": "Indian Music Club",
@@ -96,7 +157,8 @@ ___________
 
 #### Expected POST req
 
-``` {
+``` 
+{
 	"roll":213,
 	"notifid":1
 }
@@ -120,7 +182,8 @@ ___________
 
 #### Expected POST req
 
-``` {
+``` 
+{
 	"roll":213,
 	"complain":"test complain",
 	"anonymous":1 #0 if you dont want to be anonymous,
@@ -137,55 +200,6 @@ ___________
 
 - Response if everything is fine
 ``` {"status": 1}```
-
-___________
-
-### Club and council
-```http://iitbhuapp.tk/clubsandcouncils```
-
-
-#### Expected POST res
-
-- Response if anything goes wrong
-``` {"status": 0}```
-
-- Response if everything is fine
-``` {
-   "status":1,
-   "councils":[
-      {
-         "name":"Cultural Council",
-         "image":"/media/abc.jpeg",
-         "clubs":[
-            {
-               "name":"Indian Music Club",
-               "image":"/media/download.png"
-            },
-            {
-               "name":"Western Music Club",
-	       "image":"/media/download.png"
-
-            },
-            {
-               "name":"Dance Club",
-	       "image":"/media/download.png"
-
-            }
-         ]
-      },
-      {
-         "name":"Games and Sports Council",
-         "image":"/media/3.jpeg",
-         "clubs":[
-            {
-               "name":"Cricket Club",
-               "image":"/media/posters.jpg"
-            }
-         ]
-      }
-   ]
-}
-```
 
 
 ___________________
