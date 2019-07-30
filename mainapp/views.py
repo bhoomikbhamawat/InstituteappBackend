@@ -127,7 +127,7 @@ def feedandclubs(request):
 	            return JsonResponse(response) 
 
 	except:
-		pass
+		return JsonResponse(response)
 	return JsonResponse(response)
 
 
