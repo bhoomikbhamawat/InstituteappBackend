@@ -157,7 +157,7 @@ def postcomplain(request):
     response = {}
     response['status'] = 0
     if request.method == 'POST':
-        print request.body
+        print (request.body)
         post = json.loads(request.body)  # request.POST
         roll = int(post['roll'])
         student = Student.objects.get(roll=roll)
@@ -184,7 +184,7 @@ def postcomplain(request):
                 complain.save()
 
             response['status'] = 1
-            print response
+            print(response)
             return JsonResponse(response)
         else:
 
@@ -201,7 +201,7 @@ def interested(request):
         post = json.loads(request.body)  # request.POST
         roll = int(post['roll'])
         student = Student.objects.get(roll=roll)
-        print student
+        print (student)
         if student:
             notif = Notification.objects.get(id=int(post['notifid']))
             if notif:
