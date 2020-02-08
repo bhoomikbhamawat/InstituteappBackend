@@ -18,17 +18,17 @@
 ``` 
 {
     "status": 1,
-    "name": "Bhoomik Bhamawat",
-    "roll": 18085016,
-    "phone": "8003044991",
-    "department": "Electrical Engineering",
+    "name": "Ayush Saxena",
+    "roll": 18095016,
+    "phone": "8440007759",
+    "department": "BioMedical Engineering",
     "yearOfAdmission": 2018,
     "course": "B.Tech",
-    "fatherName": "Chandra Kumar Bhamawat",
-    "address": "340,Chanakya Puri ,Sector 4, Hiran Magri,Udaipur",
+    "fatherName": "Kishan Saxena",
+    "address": "243,London Complex,China Street,Jabalpur",
     "gender": "Male",
-    "bloodGroup": "AB+",
-    "dob": "08/09/2000"
+    "bloodGroup": "O+",
+    "dob": "07/07/2000"
 }
 ```
 
