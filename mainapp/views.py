@@ -141,7 +141,7 @@ def feedandclubs(request):
 
                 response['status'] = 1
                 response['notif'] = outnotif
-                print response
+                print(response)
                 return JsonResponse(response)
             else:
 
