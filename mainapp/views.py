@@ -26,7 +26,13 @@ def checkregister(request):
             response["roll"]=student.roll
             response["phone"]=student.phone
             response["department"]=student.department
-            response["year"] = student.year
+            response["yearOfAdmission"] = student.yearOfAdmission
+	    response["course"] = student.course
+	    response["fatherName"] = student.fatherName
+	    response["address"] = student.address
+	    response["gender"] = student.gender
+	    response["bloodGroup"] = student.bloodGroup
+	    response["dob"] = student.dob
             response["status"]=1 #registered
 
         except:
