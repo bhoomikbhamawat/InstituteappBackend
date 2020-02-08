@@ -9,8 +9,14 @@ class Student(models.Model):
 	department = models.CharField(max_length=100)
 	phone = models.CharField(max_length=10,blank=True)
 	email = models.CharField(max_length=100,blank=True)
-	year = models.CharField(max_length=100,blank=True)
+	course = models.CharField(max_length=100,blank=True)
+	fatherName = models.CharField(max_length=100,blank=True)
+	address = models.CharField(max_length=1000,blank=True)
+	gender = models.CharField(max_length=10,blank=True)
+	bloodGroup = models.CharField(max_length=3,blank=True)
 	fcmtoken = models.CharField(max_length=500, blank=True)
+	dob = models.CharField(max_length=15,blank=True)
+	yearOfAdmission = models.IntegerField(blank = true)
 	reg_time = models.DateTimeField(auto_now=True)
 	def __str__(self):
 		return self.name 
