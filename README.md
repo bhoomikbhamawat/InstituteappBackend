@@ -15,7 +15,22 @@
 ``` {"status": 0}```
 
 - Response if registered
-``` {"status": 1, "name":"testname" , "roll":12313123, "phone": "1232423535", "department":"Mining", "year":"2019" }```
+``` 
+{
+    "status": 1,
+    "name": "Bhoomik Bhamawat",
+    "roll": 18085016,
+    "phone": "8003044991",
+    "department": "Electrical Engineering",
+    "yearOfAdmission": 2018,
+    "course": "B.Tech",
+    "fatherName": "Chandra Kumar Bhamawat",
+    "address": "340,Chanakya Puri ,Sector 4, Hiran Magri,Udaipur",
+    "gender": "Male",
+    "bloodGroup": "AB+",
+    "dob": "08/09/2000"
+}
+```
 
 - Response if new reg
 ``` {"status": 2}```
