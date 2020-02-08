@@ -21,19 +21,19 @@ def checkregister(request):
         post = json.loads(request.body)#request.POST
         email = post["email"]
         try:
-            student = Student.objects.get(email__iexact = email)
-            response["name"]=student.name
-            response["roll"]=student.roll
-            response["phone"]=student.phone
-            response["department"]=student.department
-            response["yearOfAdmission"] = student.yearOfAdmission
-	    response["course"] = student.course
-	    response["fatherName"] = student.fatherName
-	    response["address"] = student.address
-	    response["gender"] = student.gender
-	    response["bloodGroup"] = student.bloodGroup
-	    response["dob"] = student.dob
-            response["status"]=1 #registered
+		student = Student.objects.get(email__iexact = email)
+		response["name"]=student.name
+		response["roll"]=student.roll
+		response["phone"]=student.phone
+		response["department"]=student.department
+		response["yearOfAdmission"] = student.yearOfAdmission
+		response["course"] = student.course
+		response["fatherName"] = student.fatherName
+		response["address"] = student.address
+		response["gender"] = student.gender
+		response["bloodGroup"] = student.bloodGroup
+		response["dob"] = student.dob
+		response["status"]=1 #registered
 
         except:
             response["status"] = 2 #not registered
