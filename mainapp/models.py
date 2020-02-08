@@ -16,7 +16,7 @@ class Student(models.Model):
 	bloodGroup = models.CharField(max_length=3,blank=True)
 	fcmtoken = models.CharField(max_length=500, blank=True)
 	dob = models.CharField(max_length=15,blank=True)
-	yearOfAdmission = models.IntegerField(blank = True)
+	yearOfAdmission = models.IntegerField(blank = True, default = 2018)
 	reg_time = models.DateTimeField(auto_now=True)
 	def __str__(self):
 		return self.name 
