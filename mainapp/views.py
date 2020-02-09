@@ -41,7 +41,6 @@ def checkregister(request):
             response['dob'] = student.dob
             response['status'] = 1  # registered
         except:
-
             response['status'] = 2  # not registered
     return JsonResponse(response)
 
