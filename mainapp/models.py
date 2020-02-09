@@ -65,3 +65,14 @@ class Notification(models.Model):
 	def __str__(self):
 		return self.notification_header
 
+class ImpContact(models.Model):
+	name = models.CharField(max_length=100,blank=True)
+	email = models.CharField(max_length=100,blank=True)
+	phone = models.CharField(max_length=10,blank=True)
+	role_type = models.CharField(max_length=20,blank=True)
+
+class TimeTable(models.Model):
+	department = models.CharField(max_length=100,blank=True)
+	year = models.IntegerField(blank = True, default = 1)
+	semister = models.IntegerField(blank = True, default = 1)
+	tableimage = models.ImageField(null=True,blank=True)
