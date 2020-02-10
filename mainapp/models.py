@@ -77,7 +77,6 @@ class ImpContact(models.Model):
 class TimeTable(models.Model):
 	department = models.CharField(max_length=100,blank=True)
 	year = models.IntegerField(blank = True, default = 1)
-	semester = models.IntegerField(blank = True, default = 1)
 	tableimage = models.ImageField(null=True,blank=True)
 	
 	def __str__(self):
