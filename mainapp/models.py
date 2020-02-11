@@ -7,7 +7,7 @@ class Student(models.Model):
 	roll = models.IntegerField(primary_key=True)
 	name = models.CharField(max_length=100,blank=True)
 	department = models.CharField(max_length=100)
-	phone = models.CharField(max_length=10,blank=True)
+	phone = models.IntegerField(blank = True, default = 1)
 	email = models.CharField(max_length=100,blank=True)
 	course = models.CharField(max_length=100,blank=True)
 	fatherName = models.CharField(max_length=100,blank=True)
@@ -68,7 +68,7 @@ class Notification(models.Model):
 class ImpContact(models.Model):
 	name = models.CharField(max_length=100,blank=True)
 	email = models.CharField(max_length=100,blank=True)
-	phone = models.CharField(max_length=10,blank=True)
+	phone = models.IntegerField(blank = True, default = 1)
 	role_type = models.CharField(max_length=20,blank=True)
 	
 	def __str__(self):
@@ -81,12 +81,12 @@ class TimeTable(models.Model):
 	tableimage = models.ImageField(null=True,blank=True)
 	
 	def __str__(self):
-		return self.department+' '+str(self.semester)
+		return str(self.department)+' '+str(self.semester)
 	
 class Exam(models.Model):
 	subject_code = models.CharField(max_length=10,blank=True)
 	date_and_time = models.DateTimeField(auto_now_add=True)
-	date_and_time.editable = True
+	date_and_time.editable = True 
 	location = models.CharField(max_length=20,blank=True)
 	
 	def __str__(self):

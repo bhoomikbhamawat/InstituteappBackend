@@ -216,6 +216,42 @@ ___________
 - Response if everything is fine
 ``` {"status": 1}```
 
+___________________
+### important contacts
+```http://iitbhuapp.tk/importantcontacts```
+
+#### Expected POST req
+
+``` 
+{
+	"role":"any speific role_type - student, ambulance, worker etc.."
+}
+```
+#### Expected POST res
+
+- Response if anything goes wrong
+``` {"status": 0}```
+
+- Response if role_type found
+``` 
+{
+    "status": 0,
+    "data": [
+        {
+            "name": "Yogesh",
+            "email": "sample@sample.com",
+            "phone": 123
+        },
+        {
+            "name": "xyz",
+            "email": "xyz@xyz.com",
+            "phone": 1
+        }
+    ]
+}
+```
+- Response if role_type not found
+``` {"status": 2}```
 
 ___________________
 

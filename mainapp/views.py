@@ -8,6 +8,7 @@ from .models import *
 from django.views.decorators.csrf import csrf_exempt
 from django.http import JsonResponse
 import json
+from django.core import serializers
 
 
 def randomString(stringLength=10):
@@ -239,3 +240,39 @@ def clubsandcouncils():
             cou['clubs'].append(club)
             response['councils'].append(cou)
     return response
+
+@csrf_exempt
+def importantcontacts(request):
+    response = {}
+    response['status'] = 0
+    if request.method == 'POST':
+        post = json.loads(request.body)  # request.POST
+        role = post['role']
+        contacts = ImpContact.objects.filter(role_type=role)
+        if contacts:
+            response['data'] = [
+                {
+                    "name" : contact.name,
+                    "email" : contact.email,
+                    "phone" : contact.phone,
+                } for contact in contacts ]
+            return JsonResponse(response)
+        else:
+            response['status'] = 2    # contact not found
+            return JsonResponse(response)
+    return JsonResponse(response)                
+
+
+
+
+# def curriculum_timetable(request):
+#     response = {}
+#     response['tables'] = []
+#     tables = TimeTable.objects.all()
+#     if request.method == 'POST':
+#         post = json.loads(request.body)
+#         roll = int(post['roll'])
+#         student = Student.objects.get(roll=roll)
+#         if student:
+#             department = student.department
+ 
