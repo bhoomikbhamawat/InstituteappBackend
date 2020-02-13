@@ -241,14 +241,31 @@ def clubsandcouncils():
             response['councils'].append(cou)
     return response
 
+def timetable(request):
+    response = {}
+    response['status'] = 0
+
+    if request.method == 'POST':
+        post = json.loads(request.body)  # request.POST
+        roll_no = post['roll']
+        try:
+             student = Student.objects.get(roll=roll_no)
+             dept = student.department
+             timetable = TimeTable.objects.get(department = dept)
+             response['image'] = timetable.tableimage.url
+             response['status'] = 1
+        except:
+            response['status'] =2
+            
+        return JsonResponse(response)
+    
 @csrf_exempt
 def importantcontacts(request):
     response = {}
     response['status'] = 0
     if request.method == 'POST':
         post = json.loads(request.body)  # request.POST
-        role = post['role']
-        contacts = ImpContact.objects.filter(role_type=role)
+        contacts = ImpContact.objects.all()
         if contacts:
             response['data'] = [
                 {
@@ -257,22 +274,3 @@ def importantcontacts(request):
                     "phone" : contact.phone,
                 } for contact in contacts ]
             return JsonResponse(response)
-        else:
-            response['status'] = 2    # contact not found
-            return JsonResponse(response)
-    return JsonResponse(response)                
-
-
-
-
-# def curriculum_timetable(request):
-#     response = {}
-#     response['tables'] = []
-#     tables = TimeTable.objects.all()
-#     if request.method == 'POST':
-#         post = json.loads(request.body)
-#         roll = int(post['roll'])
-#         student = Student.objects.get(roll=roll)
-#         if student:
-#             department = student.department
- 

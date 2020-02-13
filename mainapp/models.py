@@ -77,11 +77,10 @@ class ImpContact(models.Model):
 class TimeTable(models.Model):
 	department = models.CharField(max_length=100,blank=True)
 	year = models.IntegerField(blank = True, default = 1)
-	semester = models.IntegerField(blank = True, default = 1)
 	tableimage = models.ImageField(null=True,blank=True)
 	
 	def __str__(self):
-		return str(self.department)+' '+str(self.semester)
+		return self.department
 	
 class Exam(models.Model):
 	subject_code = models.CharField(max_length=10,blank=True)
@@ -91,3 +90,32 @@ class Exam(models.Model):
 	
 	def __str__(self):
 		return self.subject_code
+
+
+	
+	
+class LostObj(models.Model):
+	name = models.CharField(max_length=100,blank=True)
+	department = models.CharField(max_length=100,blank=True)
+	image = models.ImageField(null=True,blank=True)
+	obj = models.CharField(max_length=20,blank=True)
+	contact = models.IntegerField(blank = True)
+	last_loc = models.CharField(max_length=100,blank=True)
+	
+	def __str__(self):
+		return self.obj
+
+class FoundObj(models.Model):
+	name = models.CharField(max_length=100,blank=True)
+	department = models.CharField(max_length=100,blank=True)
+	image = models.ImageField(null=True,blank=True)
+	obj = models.CharField(max_length=20,blank=True)
+	contact = models.IntegerField(blank = True)
+	last_loc = models.CharField(max_length=100,blank=True)
+	
+	def __str__(self):
+		return self.obj
+	
+	
+	
+	
