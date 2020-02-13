@@ -266,11 +266,10 @@ def importantcontacts(request):
     if request.method == 'POST':
         post = json.loads(request.body)  # request.POST
         contacts = ImpContact.objects.all()
-        if contacts:
-            response['data'] = [
-                {
-                    "name" : contact.name,
-                    "email" : contact.email,
-                    "phone" : contact.phone,
-                } for contact in contacts ]
-            return JsonResponse(response)
+        response['data'] = [
+            {
+                "name" : contact.name,
+                "email" : contact.email,
+                "phone" : contact.phone,
+            } for contact in contacts ]
+    return JsonResponse(response) 
