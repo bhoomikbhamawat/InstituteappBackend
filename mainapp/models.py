@@ -85,14 +85,10 @@ class TimeTable(models.Model):
 class Exam(models.Model):
 	subject_code = models.CharField(max_length=10,blank=True)
 	date_and_time = models.DateTimeField(auto_now_add=True)
-	date_and_time.editable = True 
 	location = models.CharField(max_length=20,blank=True)
 	
 	def __str__(self):
-		return self.subject_code
-
-
-	
+		return self.subject_code	
 	
 class LostObj(models.Model):
 	name = models.CharField(max_length=100,blank=True)
@@ -115,7 +111,4 @@ class FoundObj(models.Model):
 	
 	def __str__(self):
 		return self.obj
-	
-	
-	
 	
