@@ -216,6 +216,39 @@ ___________
 - Response if everything is fine
 ``` {"status": 1}```
 
+___________________
+### important contacts
+```http://iitbhuapp.tk/importantcontacts```
+
+#### Expected POST req
+
+Empty
+``` 
+{}
+```
+#### Expected POST res
+
+- Response if anything goes wrong
+``` {"status": 0}```
+
+- Response if no error
+``` 
+{
+    "status": 1,
+    "data": [
+        {
+            "name": "Yogesh",
+            "email": "sample@sample.com",
+            "phone": 123
+        },
+        {
+            "name": "xyz",
+            "email": "xyz@xyz.com",
+            "phone": 1
+        }
+    ]
+}
+```
 
 ___________________
 

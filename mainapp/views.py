@@ -8,6 +8,7 @@ from .models import *
 from django.views.decorators.csrf import csrf_exempt
 from django.http import JsonResponse
 import json
+from django.core import serializers
 
 
 def randomString(stringLength=10):
@@ -258,3 +259,17 @@ def timetable(request):
             
         return JsonResponse(response)
     
+@csrf_exempt
+def importantcontacts(request):
+    response = {}
+    response['status'] = 0
+    if request.method == 'POST':
+        contacts = ImpContact.objects.all()
+        response['data'] = [
+            {
+                "name" : contact.name,
+                "email" : contact.email,
+                "phone" : contact.phone,
+            } for contact in contacts ]
+        response['status'] = 1
+    return JsonResponse(response) 
