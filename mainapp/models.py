@@ -105,7 +105,7 @@ class LostObj(models.Model):
 	def __str__(self):
 		return self.obj
 
-class FoundObj(self):
+class FoundObj(models.Model):
 	name = models.CharField(max_length=100,blank=True)
 	department = models.CharField(max_length=100,blank=True)
 	image = models.ImageField(null=True,blank=True)
