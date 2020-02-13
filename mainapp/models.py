@@ -88,8 +88,7 @@ class Exam(models.Model):
 	location = models.CharField(max_length=20,blank=True)
 	
 	def __str__(self):
-
-    return self.subject_code
+		return self.subject_code
 		
 class LostObj(models.Model):
 	name = models.CharField(max_length=100,blank=True)
