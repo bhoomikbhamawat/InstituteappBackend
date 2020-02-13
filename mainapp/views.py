@@ -264,7 +264,6 @@ def importantcontacts(request):
     response = {}
     response['status'] = 0
     if request.method == 'POST':
-        post = json.loads(request.body)  # request.POST
         contacts = ImpContact.objects.all()
         response['data'] = [
             {
@@ -272,4 +271,5 @@ def importantcontacts(request):
                 "email" : contact.email,
                 "phone" : contact.phone,
             } for contact in contacts ]
+        response['status'] = 1
     return JsonResponse(response) 
