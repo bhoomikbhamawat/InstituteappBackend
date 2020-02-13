@@ -222,10 +222,9 @@ ___________________
 
 #### Expected POST req
 
+Empty
 ``` 
-{
-	"role":"any speific role_type - student, ambulance, worker etc.."
-}
+{}
 ```
 #### Expected POST res
 
@@ -235,7 +234,7 @@ ___________________
 - Response if role_type found
 ``` 
 {
-    "status": 0,
+    "status": 1,
     "data": [
         {
             "name": "Yogesh",
