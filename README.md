@@ -231,7 +231,7 @@ Empty
 - Response if anything goes wrong
 ``` {"status": 0}```
 
-- Response if role_type found
+- Response if no error
 ``` 
 {
     "status": 1,
@@ -249,8 +249,6 @@ Empty
     ]
 }
 ```
-- Response if role_type not found
-``` {"status": 2}```
 
 ___________________
 
