@@ -7,7 +7,7 @@ class Student(models.Model):
 	roll = models.IntegerField(primary_key=True)
 	name = models.CharField(max_length=100,blank=True)
 	department = models.CharField(max_length=100)
-	phone = models.IntegerField(blank = True, default = 1)
+	phone = models.CharField(blank = True, default = 1)
 	email = models.CharField(max_length=100,blank=True)
 	course = models.CharField(max_length=100,blank=True)
 	fatherName = models.CharField(max_length=100,blank=True)
@@ -68,7 +68,7 @@ class Notification(models.Model):
 class ImpContact(models.Model):
 	name = models.CharField(max_length=100,blank=True)
 	email = models.CharField(max_length=100,blank=True)
-	phone = models.IntegerField(blank = True, default = 1)
+	phone = models.CharField(blank = True, default = 1)
 	role_type = models.CharField(max_length=20,blank=True)
 	
 	def __str__(self):
