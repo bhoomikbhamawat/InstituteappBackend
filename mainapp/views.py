@@ -8,7 +8,6 @@ from .models import *
 from django.views.decorators.csrf import csrf_exempt
 from django.http import JsonResponse
 import json
-from django.core import serializers
 
 
 def randomString(stringLength=10):
@@ -270,6 +269,7 @@ def importantcontacts(request):
                 "name" : contact.name,
                 "email" : contact.email,
                 "phone" : contact.phone,
+                "role" : contact.role_type,
             } for contact in contacts ]
         response['status'] = 1
     return JsonResponse(response) 
