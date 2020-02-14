@@ -270,6 +270,7 @@ def importantcontacts(request):
                 "name" : contact.name,
                 "email" : contact.email,
                 "phone" : contact.phone,
+                "role" : contact.role_type,
             } for contact in contacts ]
         response['status'] = 1
     return JsonResponse(response) 

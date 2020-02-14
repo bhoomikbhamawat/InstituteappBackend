@@ -239,12 +239,14 @@ Empty
         {
             "name": "Yogesh",
             "email": "sample@sample.com",
-            "phone": 123
+            "phone": "123",
+            "role" : "student",
         },
         {
             "name": "xyz",
             "email": "xyz@xyz.com",
-            "phone": 1
+            "phone": "1",
+            "role" : "head",
         }
     ]
 }
