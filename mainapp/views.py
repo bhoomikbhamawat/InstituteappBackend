@@ -8,7 +8,6 @@ from .models import *
 from django.views.decorators.csrf import csrf_exempt
 from django.http import JsonResponse
 import json
-from django.core import serializers
 
 
 def randomString(stringLength=10):

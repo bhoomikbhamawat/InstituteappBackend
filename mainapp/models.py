@@ -89,7 +89,9 @@ class Exam(models.Model):
 	
 	def __str__(self):
 		return self.subject_code
-		
+
+	
+	
 class LostObj(models.Model):
 	name = models.CharField(max_length=100,blank=True)
 	department = models.CharField(max_length=100,blank=True)
