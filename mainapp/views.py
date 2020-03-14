@@ -91,8 +91,8 @@ def feedandclubs(request):
     try:
         if request.method == 'POST':
             post = json.loads(request.body)  # request.POST
-            roll = int(post['roll'])
-            student = Student.objects.get(roll=roll)
+            email = post['email']
+            student = Student.objects.get(email__iexact=email)
             notifs = Notification.objects.all()
 
             # print(notifs.viewedby_set.all())
