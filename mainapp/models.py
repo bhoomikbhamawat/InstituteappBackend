@@ -58,8 +58,8 @@ class Notification(models.Model):
 	notification_header = models.CharField(max_length = 100,verbose_name='Description')
 	notification_pic = models.ImageField(null=True,blank=True,verbose_name='Image')
 	datetime = models.DateTimeField()
-	location = models.CharField(max_length = 300,choices = LOCATIONS)
-	map_location = models.CharField(max_length = 300)
+	location = models.CharField(max_length = 300)
+	map_location = models.CharField(max_length = 300,choices = LOCATIONS)
 	viewedby = models.ManyToManyField(Student,editable=False,related_name='viewedby')
 	interested = models.ManyToManyField(Student,editable=False,related_name='interested')
 
