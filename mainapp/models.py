@@ -1,7 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 # Create your models here.
-
+LOCATIONS = 
 class Student(models.Model):
 	user = models.OneToOneField(User, on_delete=models.CASCADE)
 	roll = models.IntegerField(primary_key=True)
@@ -49,6 +49,7 @@ class Club(models.Model):
 class Notification(models.Model):
 	# coun/cilname = models.ForeignKey(CouncilandCell, on_delete = models.CASCADE)
 	clubname = models.ForeignKey(Club, on_delete = models.CASCADE,verbose_name='Club/Cell Name',blank=False,null =True)
+	LOCATIONS =  [(i.strip(),i.strip()) for i in open('listPlaces.txt','r').readlines() if i.strip() != '']
 
 	# clubname = ChainedForeignKey(Club, chained_field="councilname",chained_model_field="councilname",
  #        auto_choose=True,
@@ -58,7 +59,8 @@ class Notification(models.Model):
 	notification_header = models.CharField(max_length = 100,verbose_name='Description')
 	notification_pic = models.ImageField(null=True,blank=True,verbose_name='Image')
 	datetime = models.DateTimeField()
-	location = models.CharField(max_length = 300)
+	location = models.CharField(max_length = 300,choices = LOCATIONS)
+	map_location = models.CharField(max_length = 300)
 	viewedby = models.ManyToManyField(Student,editable=False,related_name='viewedby')
 	interested = models.ManyToManyField(Student,editable=False,related_name='interested')
 
