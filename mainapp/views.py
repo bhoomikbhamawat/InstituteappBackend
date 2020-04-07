@@ -128,6 +128,7 @@ def feedandclubs(request):
                         curr['image'] = notif.notification_pic.url
                     curr['datetime'] = notif.datetime
                     curr['location'] = notif.location
+                    curr['map_location'] = notif.map_location
                     curr['viewedcount'] = notif.viewedby.count()
                     curr['interestedcount'] = notif.interested.count()
                     if student in notif.interested.all():
