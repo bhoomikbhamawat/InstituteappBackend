@@ -245,11 +245,11 @@ def timetable(request):
     response = {}
     response['status'] = 0
 
-    if request.method == 'POST':
+    if request.method == 'POST':            
         post = json.loads(request.body)  # request.POST
-        roll_no = post['roll']
+        email = post['email']
         try:
-             student = Student.objects.get(roll=roll_no)
+             student = Student.objects.get(email__iexact=email)
              dept = student.department
              timetable = TimeTable.objects.get(department = dept)
              response['image'] = timetable.tableimage.url
