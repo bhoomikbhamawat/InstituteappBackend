@@ -54,8 +54,8 @@ class Notification(models.Model):
  #        auto_choose=True,
  #        show_all=False,
  #        sort=True, null=True,blank=True)
-	notification = models.CharField(max_length= 1000, verbose_name='Title')
-	notification_header = models.CharField(max_length = 100,verbose_name='Description')
+	notification = models.CharField(max_length= 10000, verbose_name='Description')
+	notification_header = models.CharField(max_length = 100,verbose_name='Title')
 	notification_pic = models.ImageField(null=True,blank=True,verbose_name='Image')
 	datetime = models.DateTimeField()
 	location = models.CharField(max_length = 300)
