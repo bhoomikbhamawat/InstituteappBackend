@@ -14,6 +14,7 @@ urlpatterns = [
     url(r'^postcomplain$', views.postcomplain, ),
     url(r'^interested$', views.interested, ),
     url(r'^feedandclubs$', views.feedandclubs, ),
+    url(r'^timetable$',views.timetable,),
 
 
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
