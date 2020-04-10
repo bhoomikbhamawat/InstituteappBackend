@@ -33,8 +33,8 @@ class Complain(models.Model):
 		return "complain by anonymous"
 
 class CouncilandCell(models.Model):
-	name = models.CharField(max_length=100, blank=True)
-	image = models.ImageField(null=True,blank=True)
+	name = models.CharField(max_length=100, blank=False)
+	image = models.ImageField(null=True,blank=False)
 	def __str__(self):
 		return self.name
 
@@ -62,6 +62,9 @@ class Notification(models.Model):
 	map_location = models.CharField(max_length = 300,choices = LOCATIONS)
 	viewedby = models.ManyToManyField(Student,editable=False,related_name='viewedby')
 	interested = models.ManyToManyField(Student,editable=False,related_name='interested')
+	
+	class Meta:
+		ordering = ['datetime']
 
 	def __str__(self):
 		return self.notification_header
