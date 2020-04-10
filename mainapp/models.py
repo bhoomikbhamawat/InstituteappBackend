@@ -59,7 +59,7 @@ class Notification(models.Model):
 	notification_pic = models.ImageField(null=True,blank=True,verbose_name='Image')
 	datetime = models.DateTimeField()
 	location = models.CharField(max_length = 300)
-	map_location = models.CharField(max_length = 300,choices = LOCATIONS)
+	map_location = models.CharField(max_length = 300,choices = LOCATIONS, null=True,blank=True)
 	viewedby = models.ManyToManyField(Student,editable=False,related_name='viewedby')
 	interested = models.ManyToManyField(Student,editable=False,related_name='interested')
 	
@@ -94,10 +94,6 @@ class Exam(models.Model):
 	
 	def __str__(self):
 		return self.subject_code
-
-	
-	
-	
 
 	
 	

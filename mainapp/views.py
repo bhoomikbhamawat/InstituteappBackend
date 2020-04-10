@@ -128,6 +128,7 @@ def feedandclubs(request):
                         curr['image'] = notif.notification_pic.url
                     curr['datetime'] = notif.datetime
                     curr['location'] = notif.location
+                    curr['map_location'] = notif.map_location
                     curr['viewedcount'] = notif.viewedby.count()
                     curr['interestedcount'] = notif.interested.count()
                     if student in notif.interested.all():
@@ -258,3 +259,18 @@ def timetable(request):
             
         return JsonResponse(response)
     
+@csrf_exempt
+def importantcontacts(request):
+    response = {}
+    response['status'] = 0
+    if request.method == 'POST':
+        contacts = ImpContact.objects.all()
+        response['data'] = [
+            {
+                "name" : contact.name,
+                "email" : contact.email,
+                "phone" : contact.phone,
+                "role" : contact.role_type,
+            } for contact in contacts ]
+        response['status'] = 1
+    return JsonResponse(response) 
