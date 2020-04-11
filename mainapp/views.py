@@ -240,7 +240,7 @@ def clubsandcouncils():
             cou['clubs'].append(club)
             response['councils'].append(cou)
     return response
-
+@csrf_exempt
 def timetable(request):
     response = {}
     response['status'] = 0
