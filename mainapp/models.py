@@ -33,8 +33,8 @@ class Complain(models.Model):
 		return "complain by anonymous"
 
 class CouncilandCell(models.Model):
-	name = models.CharField(max_length=100, blank=True)
-	image = models.ImageField(null=True,blank=True)
+	name = models.CharField(max_length=100, blank=False)
+	image = models.ImageField(null=True,blank=False)
 	def __str__(self):
 		return self.name
 
@@ -54,14 +54,17 @@ class Notification(models.Model):
  #        auto_choose=True,
  #        show_all=False,
  #        sort=True, null=True,blank=True)
-	notification = models.CharField(max_length= 1000, verbose_name='Title')
-	notification_header = models.CharField(max_length = 100,verbose_name='Description')
+	notification = models.CharField(max_length= 10000, verbose_name='Description')
+	notification_header = models.CharField(max_length = 100,verbose_name='Title')
 	notification_pic = models.ImageField(null=True,blank=True,verbose_name='Image')
 	datetime = models.DateTimeField()
 	location = models.CharField(max_length = 300)
 	map_location = models.CharField(max_length = 300,choices = LOCATIONS, null=True,blank=True)
 	viewedby = models.ManyToManyField(Student,editable=False,related_name='viewedby')
 	interested = models.ManyToManyField(Student,editable=False,related_name='interested')
+	
+	class Meta:
+		ordering = ['datetime']
 
 	def __str__(self):
 		return self.notification_header
@@ -85,7 +88,8 @@ class TimeTable(models.Model):
 	
 class Exam(models.Model):
 	subject_code = models.CharField(max_length=10,blank=True)
-	date_and_time = models.DateTimeField(auto_now_add=True)
+	date_and_time = models.DateTimeField(auto_now_add=False)
+	date_and_time.editable = True
 	location = models.CharField(max_length=20,blank=True)
 	
 	def __str__(self):
@@ -93,25 +97,4 @@ class Exam(models.Model):
 
 	
 	
-class LostObj(models.Model):
-	name = models.CharField(max_length=100,blank=True)
-	department = models.CharField(max_length=100,blank=True)
-	image = models.ImageField(null=True,blank=True)
-	obj = models.CharField(max_length=20,blank=True)
-	phone = models.CharField(max_length=10,blank=True)
-	last_loc = models.CharField(max_length=100,blank=True)
-	
-	def __str__(self):
-		return self.obj
-
-class FoundObj(models.Model):
-	name = models.CharField(max_length=100,blank=True)
-	department = models.CharField(max_length=100,blank=True)
-	image = models.ImageField(null=True,blank=True)
-	obj = models.CharField(max_length=20,blank=True)
-	phone = models.CharField(max_length=10,blank=True)
-	last_loc = models.CharField(max_length=100,blank=True)
-	
-	def __str__(self):
-		return self.obj
 	
